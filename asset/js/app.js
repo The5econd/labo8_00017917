@@ -32,16 +32,35 @@ var formulario = document.getElementById("bitacora");
 /*Pregunta 1: formulario contiene el elemento cuyo id es bitacora */
 
 formulario.addEventListener("submit", (evt) => {
-    evt.preventDefault();
-    let bitacora = {
-            cant: cont,
-            fecha: formulario[1].value,
-            descripcion: formulario[2].value,
-            cantidad: formulario[3].value
+    if (!(formulario[1].value == null || formulario[1].value == ""||formulario[2].value == null || formulario[2].value == ""||formulario[3].value == null || formulario[3].value == "" || parseInt(formulario[3].value) <= 0)){
+        evt.preventDefault();
+        let bitacora = {
+                cant: cont,
+                fecha: formulario[1].value,
+                descripcion: formulario[2].value,
+                cantidad: formulario[3].value
+        }
+        bitacoras.push(bitacora);
+        cont++;
+        mostrar();
     }
-    bitacoras.push(bitacora);
-    cont++;
-    mostrar();
+    if(formulario[1].value == ""||formulario[1].value == null){
+        formulario[1].style.borderColor = "red";
+    }else{
+        formulario[1].style.borderColor = "green";
+    }
+
+    if(formulario[2].value == ""||formulario[2].value == null){
+        formulario[2].style.borderColor = "red";
+    }else{
+        formulario[2].style.borderColor = "green";
+    }
+
+    if(formulario[3].value == ""||formulario[3].value == null ||formulario[3].value <= 0){
+        formulario[3].style.borderColor = "red";
+    }else{
+        formulario[3].style.borderColor = "green";
+    }
 });
 /*Pregunta 2: preventDefault previene que el evento realice la accion predeterminada que tiene*/
 /*Pregunta 3: la etiqueta en la posicion x de el formulario */
